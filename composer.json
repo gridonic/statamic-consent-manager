@@ -1,0 +1,19 @@
+{
+    "name": "gridonic/statamic-consent-manager",
+    "autoload": {
+        "psr-4": {
+            "Gridonic\\StatamicConsentManager\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Consent Manager",
+            "description": "Statamic Consent Manager addon"
+        },
+        "laravel": {
+            "providers": [
+                "Gridonic\\StatamicConsentManager\\ServiceProvider"
+            ]
+        }
+    }
+}
