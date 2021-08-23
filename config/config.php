@@ -13,7 +13,9 @@ return [
             'consented' => true,
             'scripts' => [
                 [
-                    'tag' => '<script>console.log(\'script 1 dynamically loaded into head\');</script>',
+                    // The full script tag to include in the page if consent is given.
+                    'tag' => '<script>console.log(\'script dynamically loaded with consent manager\');</script>',
+                    // Choose "head" or "body" to append the script to the page.
                     'appendTo' => 'head',
                 ],
             ],
