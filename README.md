@@ -67,7 +67,7 @@ modify consent data by using the javascript API.
 
 ### Rendering a cookie banner
 
-The addon provides the tag `{{ conent_manager:groups }}` which can be used to loop over
+The addon provides the tag `{{ consent_manager:groups }}` which can be used to loop over
 consent groups in Antlers.
 
 ```
