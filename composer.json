@@ -5,6 +5,11 @@
             "Gridonic\\StatamicConsentManager\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Gridonic\\StatamicConsentManager\\Tests\\": "tests"
+        }
+    },
     "extra": {
         "statamic": {
             "name": "Statamic Consent Manager",
@@ -15,5 +20,8 @@
                 "Gridonic\\StatamicConsentManager\\ServiceProvider"
             ]
         }
+    },
+    "require": {
+        "phpunit/phpunit": "^9.5"
     }
 }

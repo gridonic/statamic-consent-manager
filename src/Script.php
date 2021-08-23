@@ -27,7 +27,7 @@ class Script
             'src' => $this->parseSource(),
             'type' => $this->parseType(),
             'referrerpolicy' => $this->parseReferrerPolicy(),
-            'content' => base64_encode($this->parseContent()),
+            'content' => $this->parseContent(),
             'async' => $this->parseAsync(),
             'defer' => $this->parseDefer(),
         ];
@@ -67,14 +67,14 @@ class Script
     {
         preg_match('/referrerpolicy="([^"]*)"/', $this->parseScriptTag(), $matches);
 
-        return $matches[0] ?? null;
+        return $matches[1] ?? null;
     }
 
     private function parseContent()
     {
         preg_match('/^<script[^>]*>(.*)<\/script>$/', $this->tag, $matches);
 
-        return $matches[1] ?? null;
+        return isset($matches[1]) && $matches[1] ? base64_encode($matches[1]) : null;
     }
 
     private function parseAsync(): bool
