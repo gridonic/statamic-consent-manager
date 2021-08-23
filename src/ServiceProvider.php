@@ -34,7 +34,7 @@ class ServiceProvider extends AddonServiceProvider
             $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'statamic.consent_manager');
             $this->publishes([
                 __DIR__ . '/../config/config.php' => config_path('statamic/consent_manager.php'),
-            ], 'statamic_consent_manager');
+            ], 'statamic-consent-manager-config');
         }
     }
 

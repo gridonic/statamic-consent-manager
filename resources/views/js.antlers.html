@@ -46,6 +46,10 @@
       return group ? group.required : undefined;
     }
 
+    getGroups() {
+      return this.groups;
+    }
+
     getGroup(id) {
       return this.groups.find(g => g.id === id);
     }
