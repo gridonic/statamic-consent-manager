@@ -37,40 +37,45 @@ class Script
         return $parsed;
     }
 
-    public function getTag()
+    public function getTag(): string
     {
         return $this->tag;
     }
 
-    private function parseScriptTag()
+    public function getAppendTo(): string
+    {
+        return $this->appendTo;
+    }
+
+    private function parseScriptTag(): ?string
     {
         preg_match('/^<script[^>]*>/', $this->tag, $matches);
 
         return $matches[0] ?? null;
     }
 
-    private function parseSource()
+    private function parseSource(): ?string
     {
         preg_match('/src="([^"]*)"/', $this->parseScriptTag(), $matches);
 
         return $matches[1] ?? null;
     }
 
-    private function parseType()
+    private function parseType(): ?string
     {
         preg_match('/type="([^"]*)"/', $this->parseScriptTag(), $matches);
 
         return $matches[1] ?? null;
     }
 
-    private function parseReferrerPolicy()
+    private function parseReferrerPolicy(): ?string
     {
         preg_match('/referrerpolicy="([^"]*)"/', $this->parseScriptTag(), $matches);
 
         return $matches[1] ?? null;
     }
 
-    private function parseContent()
+    private function parseContent(): ?string
     {
         preg_match('/^<script[^>]*>(.*)<\/script>$/', $this->tag, $matches);
 

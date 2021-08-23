@@ -22,6 +22,7 @@
         }
     },
     "require": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "illuminate/support": "^8.55"
     }
 }

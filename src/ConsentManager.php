@@ -24,8 +24,7 @@ class ConsentManager
         $groups = collect($config['groups'] ?? [])->map(function ($group, $id) {
             $scripts = collect($group['scripts'] ?? [])->map(function($script) {
                 $appendTo = $script['appendTo'] ?? Script::APPEND_HEAD;
-                $environments = $script['environments'] ?? [];
-                return new Script($script['tag'], $appendTo, $environments);
+                return new Script($script['tag'], $appendTo);
             })->all();
 
             return (new ConsentGroup($id))
@@ -44,6 +43,13 @@ class ConsentManager
         return collect($this->groups)->map(function (ConsentGroup $group) {
             return $group->toJson();
         })->values()->all();
+    }
+
+    public function getGroup(string $groupId): ?ConsentGroup
+    {
+        return collect($this->groups)->filter(function(ConsentGroup $group) use ($groupId) {
+            return $group->getId() === $groupId;
+        })->first();
     }
 
     public function getGroups(): array
