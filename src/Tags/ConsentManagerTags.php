@@ -24,4 +24,9 @@ class ConsentManagerTags extends Tags
             'storage_type' => $this->consentManager->getStorage(),
         ]);
     }
+
+    public function groups()
+    {
+        return $this->parseLoop($this->consentManager->toJson());
+    }
 }

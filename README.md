@@ -62,12 +62,27 @@ return [
 1. Define your consent groups and their scripts in the configuration. 
 2. Add the `{{ consent_manager }}` tag in the `head` of your layout.
 
-That's it! 🥳 What's left up to you is to design a nice cookie banner by
-using the javascript API.
+That's it! 🥳 What's left up to you is to design a nice cookie banner and
+modify consent data by using the javascript API.
+
+### Rendering a cookie banner
+
+The addon provides the tag `{{ conent_manager:groups }}` which can be used to loop over
+consent groups in Antlers.
+
+```
+{{ consent_manager:groups }}
+    Group ID: {{ id }}
+    Consented by default: {{ consented }}
+    Required: {{ required }}  
+{{ /consent_manager:groups }}
+```
+
+> ℹ️ To read of modify consent, you need to use the javascript API, because the data is stored client-side only.
 
 ### Javascript API
 
-The addon offers a `window.consentManager` object to read and write consent data.
+The addon exposes a `window.consentManager` object to read and write consent data.
 
 | Method | Description |
 | --- | --- |
