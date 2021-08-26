@@ -8,7 +8,7 @@
       const initConsent = (groups) => {
         const consent = {};
         groups.forEach((group) => {
-          consent[group.id] = group.consented ?? false;
+          consent[group.id] = group.consented || false;
         })
 
         return { ...consent, ...this._loadConsent() };

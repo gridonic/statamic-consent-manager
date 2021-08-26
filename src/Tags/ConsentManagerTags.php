@@ -19,7 +19,7 @@ class ConsentManagerTags extends Tags
 
     public function index()
     {
-        return view('statamic_consent_manager::js', [
+        return view('statamic_consent_manager::js_minified', [
             'groups' => json_encode($this->consentManager->toJson()),
             'storage_type' => $this->consentManager->getStorage(),
         ]);

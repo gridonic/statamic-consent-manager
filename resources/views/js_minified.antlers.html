@@ -1,0 +1,22 @@
+<script>class ConsentManager{constructor({groups,storageType}){const getStorage=(storageType)=>{return storageType==='local'?window.localStorage:window.sessionStorage}
+  const initConsent=(groups)=>{const consent={};groups.forEach((group)=>{consent[group.id]=group.consented||!1})
+    return{...consent,...this._loadConsent()}}
+  this.groups=groups;this.storageKey='statamic_consent_manager';this.storage=getStorage(storageType);this.consent=initConsent(this.groups);document.addEventListener('DOMContentLoaded',()=>{this._addScripts(this.groups)})}
+  getConsent(groupId){return this.consent[groupId]}
+  setConsent(groupId,consent){if(consent===this.getConsent(groupId)){return}
+    this.consent[groupId]=!!consent;this._storeConsent(this.consent);const group=this.getGroup(groupId);this._addScripts([group])}
+  isRequired(groupId){const group=this.getGroup(groupId);return group?group.required:undefined}
+  getGroups(){return this.groups}
+  getGroup(id){return this.groups.find(g=>g.id===id)}
+  _loadConsent(){const consent=this.storage.getItem(this.storageKey);return consent?JSON.parse(consent):{}}
+  _storeConsent(consent){this.storage.setItem(this.storageKey,JSON.stringify(consent))}
+  _addScripts(groups){groups.forEach((group)=>{if(this.getConsent(group.id)&&group.scripts&&group.scripts.length){group.scripts.forEach((script)=>{this._addScript(script)})}})}
+  _addScript(script){const existing=document.getElementById(script.id);if(existing){return}
+    const node=document.createElement('script');node.id=script.id;if(script.content){node.text=atob(script.content)}
+    if(script.async){node.async=!!script.async}
+    if(script.src){node.src=script.src}
+    if(script.defer){node.defer=!!script.defer}
+    if(script.type){node.type=script.type}
+    if(script.referrerpolicy){node.referrerPolicy=script.referrerpolicy}
+    if(script.appendTo==='head'){document.head.appendChild(node)}else{document.body.appendChild(node)}}}
+window.consentManager=new ConsentManager({groups:JSON.parse('{{ groups }}'),storageType:'{{ storage_type }}'})</script>
